@@ -8,9 +8,13 @@ const userSchema = new mongoose.Schema({
     zipcode: String,
     accountType: {
         type:String,
-        enum: ['CUSTOMER','ADMIN','RESTURANT']
+        enum: ['PERSONAL','ADMIN','BUSSINESS']
     },
-    dateOfBirth: Date
+    dateOfBirth: Date,
+    joined: Date,
+    followings: Number,
+    followers: Number,
+    thingsILove: String,
 }, {collection: 'users'});
 
 export default userSchema;

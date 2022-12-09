@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import UsersController from './controller/usersController.js';
 import SessionController from './controller/sessionController.js';
 import AuthController from './controller/authController.js';
+import YelpAPIController from "./controller/yelpAPIController.js";
 
 mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority');
 
@@ -14,6 +15,8 @@ app.use(cors({
     //origin: true
     origin: 'http://localhost:3000'
   }));
+
+YelpAPIController(app);
 
 const SECRET = 'process.env.SECRET';
 let sess = {
@@ -40,5 +43,6 @@ app.get('/', (req, res) => {res.send('Welcome to Full Stack Development!')})
 
 SessionController(app);
 AuthController(app);
+
 
 app.listen(process.env.PORT || 4000);

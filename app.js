@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import UsersController from './controller/usersController.js';
 import SessionController from './controller/sessionController.js';
 import AuthController from './controller/authController.js';
+import FollowController from './controller/followController.js';
 
 mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority');
 
@@ -33,12 +34,13 @@ app.use(session(sess))
 app.use(express.json());
 
 UsersController(app);
-
+FollowController(app);
 
 app.get('/hello', (req, res) => {res.send('Life is good!')})
 app.get('/', (req, res) => {res.send('Welcome to Full Stack Development!')})
 
 SessionController(app);
 AuthController(app);
+
 
 app.listen(process.env.PORT || 4000);

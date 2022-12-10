@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import UsersController from './controller/usersController.js';
 import SessionController from './controller/sessionController.js';
 import AuthController from './controller/authController.js';
+import FollowController from './controller/followController.js';
 import ReviewsController from "./controller/reviewsController.js";
 import YelpAPIController from "./controller/yelpAPIController.js";
 
@@ -39,7 +40,7 @@ app.use(session(sess))
 app.use(express.json());
 
 UsersController(app);
-
+FollowController(app);
 
 app.get('/hello', (req, res) => {res.send('Life is good!')})
 app.get('/', (req, res) => {res.send('Welcome to Full Stack Development!')})
@@ -47,6 +48,7 @@ app.get('/', (req, res) => {res.send('Welcome to Full Stack Development!')})
 SessionController(app);
 AuthController(app);
 ReviewsController(app)
+
 
 
 app.listen(process.env.PORT || 4000);

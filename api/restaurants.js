@@ -1,12 +1,12 @@
-const {withAuth} = require('../utils')
+const {withAuth} = require('../utils.js')
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'});
 const fs = require('fs');
 const getDistance = (x,y) => { return 1;}; // Temporary for running the project
 
-const Restaurant = require('../models/restaurant');
-const Review = require('../models/review');
-const User = require('../models/user');
+const Restaurant = require('../models/restaurant.js');
+const Review = require('../models/review.js');
+const User = require('../models/user.js');
 
 module.exports = (app) => {
   app.get('/api/restaurant', withAuth, async function (req, res, next) {

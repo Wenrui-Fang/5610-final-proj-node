@@ -5,11 +5,13 @@ sdk.auth('Bearer Nha6KX2bDIn3g08t3sJ-HZ4rXpPJgQ_oLkiHTZ6nH5ELzcCi-xhDRX6R1qtom4j
 
 const findBusinesses = (req, res) => {
     const location = req.query.location;
-    sdk.v3_business_search({location: location, limit: '4'})
+    const term = req.query.term;
+    sdk.v3_business_search({term: term, location: location})
         .then(({data}) => {console.log(data);res.json(data);})
         .catch(err => console.error(err));
 }
 
+// Sample url: `/api/businesses?term=piazza&location=seattle`
 const findBusinessInfoById = (req, res) => {
     const business_id = req.params['bid'];
     sdk.v3_business_info({business_id_or_alias: business_id})
@@ -17,6 +19,7 @@ const findBusinessInfoById = (req, res) => {
         .catch(err => console.error(err));
 }
 
+// Sample url: `/api/business/6I28wDuMBR5WLMqfKxaoeg`
 const YelpAPIController =  (app) => {
     app.get('/api/businesses', findBusinesses);
     app.get('/api/business/:bid',findBusinessInfoById);

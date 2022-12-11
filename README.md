@@ -3,15 +3,13 @@
 
 yelpAPIController usage:
 
-### Find businesses only support search by location.
+### Find businesses support search by term(the keyword such as piazza) and location together.
 
-Sample url: `/api/businesses?location=seattle`
+Sample url: `/api/businesses?term=piazza&location=seattle`
 
 Sample response: https://gist.github.com/cathyyucs/5f177831eb3fd0a4b9788df926a3914e
 
-Currently, returned number of businesses is hardcode at 4 for development purpose.
-
-`limit: '4'`
+Currently, returned number of businesses is default by official yelp api at 20.
 
 ### Find business detail info by business id
 

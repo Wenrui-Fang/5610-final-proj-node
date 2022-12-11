@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
 import * as usersDao from '../daos/usersDao.js';
+import * as followService from '../service/followService.js';
 
 const createUser = async(req, res) => {
     const newUser = req.body;
@@ -48,9 +48,26 @@ const deleteUser = async(req, res) => {
 }
 
 const findUserByUsername = async(req, res) => {
-    const username = req.params.username;
+    let username = req.session['profile'] && req.params.username === req.session['profile'].username ? 
+        req.session['profile'].username : req.params.username;
+
+    let flag = true;
+    if (req.params.username === req.session['profile'].username && req.session['profile']) {
+        flag = false;
+    }
+
+    let uid1 = req.session['profile']._id;
+
     const user = await usersDao.findUserByUsername(username);
-    res.json(user);
+
+    if (flag) {
+        const newUser = await followService
+            .getSingleFollowedUser(uid1,user);
+
+        res.json(newUser);
+    } else {
+        res.json(user);
+    }
 }
 
 const UsersController =  (app) => {

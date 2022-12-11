@@ -2,13 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import mongoose from 'mongoose';
+import BookmarkController from './controller/bookmarkController.js';
 import UsersController from './controller/usersController.js';
 import SessionController from './controller/sessionController.js';
 import AuthController from './controller/authController.js';
 import FollowController from './controller/followController.js';
 import ReviewsController from "./controller/reviewsController.js";
 import YelpAPIController from "./controller/yelpAPIController.js";
-
 
 // mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority');
 mongoose.connect('mongodb://localhost:27017/yelp');
@@ -41,6 +41,7 @@ app.use(express.json());
 
 UsersController(app);
 FollowController(app);
+BookmarkController(app);
 
 app.get('/hello', (req, res) => {res.send('Life is good!')})
 app.get('/', (req, res) => {res.send('Welcome to Full Stack Development!')})

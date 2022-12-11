@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const reviewsSchema = new mongoose.Schema({
-    restaurant: String,
+    businessId: String,
     text: String,
     star: Number,
     reviewByUserId: String,

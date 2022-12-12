@@ -4,11 +4,13 @@ const userSchema = new mongoose.Schema({
     password: {type: String, required: true},
     firstName: String,
     lastName: String,
-    email: {type: String, required: true},
+    profilePhoto: String,
+    email: {type: String, required: true,},
     zipcode: String,
     accountType: {
         type:String,
-        enum: ['PERSONAL','ADMIN','BUSSINESS']
+        enum: ['PERSONAL','ADMIN','BUSINESS'],
+        default: 'PERSONAL',
     },
     dateOfBirth: Date,
     joined: Date,

@@ -18,7 +18,7 @@ app.use(cors({
     credentials: true,
     //origin: true
     origin: 'http://localhost:3000'
-  }));
+}));
 
 YelpAPIController(app);
 
@@ -37,19 +37,22 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(session(sess))
-app.use(express.json());
+app.use(express.json({limit: '10mb'}));
 
 UsersController(app);
 FollowController(app);
 BookmarkController(app);
 
-app.get('/hello', (req, res) => {res.send('Life is good!')})
-app.get('/', (req, res) => {res.send('Welcome to Full Stack Development!')})
+app.get('/hello', (req, res) => {
+    res.send('Life is good!')
+})
+app.get('/', (req, res) => {
+    res.send('Welcome to Full Stack Development!')
+})
 
 SessionController(app);
 AuthController(app);
 ReviewsController(app)
-
 
 
 app.listen(process.env.PORT || 4000);

@@ -10,16 +10,16 @@ import FollowController from './controller/followController.js';
 import ReviewsController from "./controller/reviewsController.js";
 import YelpAPIController from "./controller/yelpAPIController.js";
 
-
-mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority');
-//mongoose.connect('mongodb://localhost:27017/yelp');
+const CONNECTION_STRING = 'mongodb://localhost:27017/yelp'
+    || 'mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(CONNECTION_STRING)
 
 const app = express();
 app.use(cors({
     credentials: true,
     //origin: true
     origin: 'http://localhost:3000'
-  }));
+}));
 
 YelpAPIController(app);
 
@@ -43,13 +43,16 @@ app.use(express.json({limit: '10mb'}));
 UsersController(app);
 FollowController(app);
 
-app.get('/hello', (req, res) => {res.send('Life is good!')})
-app.get('/', (req, res) => {res.send('Welcome to Full Stack Development!')})
+app.get('/hello', (req, res) => {
+    res.send('Life is good!')
+})
+app.get('/', (req, res) => {
+    res.send('Welcome to Full Stack Development!')
+})
 
 SessionController(app);
 AuthController(app);
 ReviewsController(app)
-
 
 
 app.listen(process.env.PORT || 4000);

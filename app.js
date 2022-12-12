@@ -10,8 +10,8 @@ import ReviewsController from "./controller/reviewsController.js";
 import YelpAPIController from "./controller/yelpAPIController.js";
 
 
-// mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority');
-mongoose.connect('mongodb://localhost:27017/yelp');
+mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority');
+//mongoose.connect('mongodb://localhost:27017/yelp');
 
 const app = express();
 app.use(cors({
@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(session(sess))
-app.use(express.json());
+app.use(express.json({limit: '10mb'}));
 
 UsersController(app);
 FollowController(app);

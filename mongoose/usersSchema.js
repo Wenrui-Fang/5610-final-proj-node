@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     zipcode: String,
     accountType: {
         type:String,
-        enum: ['PERSONAL','ADMIN','BUSSINESS'],
+        enum: ['PERSONAL','ADMIN','BUSINESS'],
         default: 'PERSONAL',
     },
     dateOfBirth: Date,

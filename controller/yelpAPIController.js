@@ -1,8 +1,7 @@
 import api from 'api';
 
 const sdk = api('@yelp-developers/v1.0#2hsur2ylbank95o');
-sdk.auth('Bearer Nha6KX2bDIn3g08t3sJ-HZ4rXpPJgQ_oLkiHTZ6nH5ELzcCi-xhDRX6R1qtom4jDoIsDuBCQHc_-ZBTU2xdgiNWI3PGLjIbSKDPNl7G3GrLVFqEPA7bUPpfzxm2RY3Yx');
-
+sdk.auth('Bearer yNg5YLB7iLiP63KPBaCv6SZ8M1mAwsCqXDSruWSrVlYz3CCJLQz47mVkHW1HVm6FJHnt788c0LBClbAEOxgM941QTKY8MgSvPtFI7_IEtaq3ETvbdLTZPylMAxyWY3Yx');
 const findBusinesses = (req, res) => {
     const location = req.query.location;
     sdk.v3_business_search({location: location, limit: '4'})

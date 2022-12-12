@@ -7,8 +7,12 @@ import SessionController from './controller/sessionController.js';
 import AuthController from './controller/authController.js';
 import YelpAPIController from "./controller/yelpAPIController.js";
 import FollowController from './controller/followController.js';
+import ReviewsController from "./controller/reviewsController.js";
+import YelpAPIController from "./controller/yelpAPIController.js";
+
 
 mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority');
+//mongoose.connect('mongodb://localhost:27017/yelp');
 
 const app = express();
 app.use(cors({
@@ -34,7 +38,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(session(sess))
-app.use(express.json());
+app.use(express.json({limit: '10mb'}));
 
 UsersController(app);
 FollowController(app);
@@ -44,6 +48,8 @@ app.get('/', (req, res) => {res.send('Welcome to Full Stack Development!')})
 
 SessionController(app);
 AuthController(app);
+ReviewsController(app)
+
 
 
 app.listen(process.env.PORT || 4000);

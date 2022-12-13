@@ -13,9 +13,9 @@ const findBusinesses = (req, res) => {
 }
 
 // Sample url: `/api/business/6I28wDuMBR5WLMqfKxaoeg`
-const findBusinessInfoById = (req, res) => {
+const findBusinessInfoById = async (req, res) => {
     const business_id = req.params['bid'];
-    sdk.v3_business_info({business_id_or_alias: business_id})
+    await sdk.v3_business_info({business_id_or_alias: business_id})
         .then(({ data }) => {console.log(data); res.json(data);})
         .catch(err => console.error(err));
 }

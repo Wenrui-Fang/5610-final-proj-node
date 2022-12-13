@@ -1,8 +1,13 @@
 import mongoose, {Schema} from "mongoose";
 
-const bookmarkSchema = new mongoose.Schema({
-    businessId: String,
-    bookmarkedBy: {type: Schema.Types.ObjectId, ref: "UserModel"},
+let bookmarkSchema = new mongoose.Schema({
+    "businessId": {"type": String, "required": true},
+    "bookmarkedBy": {"type": Schema.Types.ObjectId, ref: "UserModel", "required": true},
 }, {collection: 'bookmarks'});
 
-export default followSchema;
+bookmarkSchema.index({
+    'businessId': 1,
+    'bookmarkedBy': 1
+},{unique: true ,background: true})
+
+export default bookmarkSchema;

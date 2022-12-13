@@ -10,8 +10,9 @@ import FollowController from './controller/followController.js';
 import ReviewsController from "./controller/reviewsController.js";
 import YelpAPIController from "./controller/yelpAPIController.js";
 
-// mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority');
-mongoose.connect('mongodb://localhost:27017/yelp');
+const CONNECTION_STRING = 'mongodb://localhost:27017/yelp'
+    || 'mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(CONNECTION_STRING)
 
 const app = express();
 app.use(cors({

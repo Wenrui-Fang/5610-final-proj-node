@@ -1,0 +1,22 @@
+/**
+ * @file Implements mongoose schema for movies
+ */
+
+import mongoose, {Schema} from "mongoose";
+import Movie from "../../models/movies/Movie";
+
+const BusinessSchema = new mongoose.Schema<Movie>({
+    title: {type: String, required: true},
+    poster: String,
+    imdbID: String,
+    //length: Number,
+    //released: {type: Date, default: Date.now},
+    //director: String,
+    year: Number,
+    rating: {type: Number, default: 0},
+    likes: {type: Number, default: 0},
+    dislikes: {type: Number, default: 0}
+
+}, {collection: 'movies'});
+
+export default BusinessSchema;

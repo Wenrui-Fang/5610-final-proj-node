@@ -12,7 +12,7 @@ import YelpAPIController from "./controller/yelpAPIController.js";
 
 const CONNECTION_STRING = 'mongodb://localhost:27017/yelp'
     || 'mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority'
-mongoose.connect(CONNECTION_STRING)
+mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.nsulus5.mongodb.net/?retryWrites=true&w=majority')
 
 const app = express();
 app.use(cors({

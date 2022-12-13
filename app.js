@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import mongoose from 'mongoose';
+import BookmarkController from './controller/bookmarkController.js';
 import UsersController from './controller/usersController.js';
 import SessionController from './controller/sessionController.js';
 import AuthController from './controller/authController.js';
@@ -41,6 +42,7 @@ app.use(express.json({limit: '10mb'}));
 
 UsersController(app);
 FollowController(app);
+BookmarkController(app);
 
 app.get('/hello', (req, res) => {
     res.send('Life is good!')

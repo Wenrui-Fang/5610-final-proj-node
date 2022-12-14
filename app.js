@@ -6,6 +6,7 @@ import BookmarkController from './controller/bookmarkController.js';
 import UsersController from './controller/usersController.js';
 import SessionController from './controller/sessionController.js';
 import AuthController from './controller/authController.js';
+import YelpAPIController from "./controller/yelpAPIController.js";
 import FollowController from './controller/followController.js';
 import ReviewsController from "./controller/reviewsController.js";
 import YelpAPIController from "./controller/yelpAPIController.js";

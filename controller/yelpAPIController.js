@@ -1,6 +1,7 @@
 import api from 'api';
 
 const sdk = api('@yelp-developers/v1.0#2hsur2ylbank95o');
+
 sdk.auth('Bearer yNg5YLB7iLiP63KPBaCv6SZ8M1mAwsCqXDSruWSrVlYz3CCJLQz47mVkHW1HVm6FJHnt788c0LBClbAEOxgM941QTKY8MgSvPtFI7_IEtaq3ETvbdLTZPylMAxyWY3Yx');
 
 // Sample url: `/api/businesses?term=piazza&location=seattle`

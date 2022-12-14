@@ -15,6 +15,11 @@ const buildBusinessQueryElement = (index, businessId) => {
 }
 
 export const getBusinessDetails = async(businessIds) => {
+
+    if (businessIds.length === 0) {
+        return null;
+    }
+
     const graphQLClient = new GraphQLClient(yelpApiUrl, {
         headers: { Authorization: 'Bearer yNg5YLB7iLiP63KPBaCv6SZ8M1mAwsCqXDSruWSrVlYz3CCJLQz47mVkHW1HVm6FJHnt788c0LBClbAEOxgM941QTKY8MgSvPtFI7_IEtaq3ETvbdLTZPylMAxyWY3Yx' },
     });

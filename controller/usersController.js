@@ -1,5 +1,7 @@
+import bcrypt from 'bcrypt';
 import * as usersDao from '../daos/usersDao.js';
 import * as followService from '../service/followService.js';
+const saltRounds = 10;
 
 const createUser = async(req, res) => {
     const newUser = req.body;
@@ -20,18 +22,6 @@ const findUserById = async(req, res) => {
 
 const updateUser =  async(req, res) => {
     let newUser = req.body;
-    let password = null;
-    if(newUser.password!==""){
-        const passwd = newUser.password;
-        password = await bcrypt.hash(passwd,saltRounds);
-    }else{
-        const user = await usersDao.findUserById(newUser._id);
-        password = user.password;
-    }
-
-
-    newUser = {...newUser,password: password};
-
 
     let update = await usersDao.updateUser(newUser._id,newUser);
     let updatedUser = await usersDao.findUserById(newUser._id);
@@ -52,7 +42,7 @@ const findUserByUsername = async(req, res) => {
         req.session['profile'].username : req.params.username;
 
     let flag = true;
-    if (req.params.username === req.session['profile'].username && req.session['profile']) {
+    if (req.session['profile']&&req.params.username === req.session['profile'].username) {
         flag = false;
     }
 
@@ -70,11 +60,18 @@ const findUserByUsername = async(req, res) => {
     }
 }
 
+const findUserBySingleUsername = async(req,res)=> {
+    console.log(req.params.username);
+    const user = await usersDao.findUserByUsername(req.params.username);
+    res.json(user);
+}
+
 const UsersController =  (app) => {
     app.post('/api/users', createUser);
     app.get('/api/users', findAllUsers);
     app.get('/api/users/:uid',findUserById);
     app.get('/api/users/username/:username', findUserByUsername);
+    app.get('/api/users/username/single/:username',findUserBySingleUsername);
     app.put('/api/users/:uid',updateUser);
     app.delete('/api/users/:uid', deleteUser);
 }

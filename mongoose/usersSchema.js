@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     zipcode: String,
     accountType: {
         type:String,
-        enum: ['PERSONAL','ADMIN','BUSINESS'],
+        enum: ['PERSONAL','ADMIN','BUSSINESS'],
         default: 'PERSONAL',
     },
     dateOfBirth: Date,
@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
     followings: Number,
     followers: Number,
     thingsILove: String,
+    bussinessId: String,
 }, {collection: 'users'});
 
 export default userSchema;
